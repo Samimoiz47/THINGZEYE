@@ -1,0 +1,98 @@
+/* Additional Loading Animation Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-content {
+    text-align: center;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .eyes-container {
+        width: 250px;
+        height: 100px;
+    }
+    
+    .eye {
+        width: 100px;
+        height: 50px;
+    }
+    
+    .pupil {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .welcome-text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eyes-container {
+        width: 200px;
+        height: 80px;
+    }
+    
+    .eye {
+        width: 80px;
+        height: 40px;
+    }
+    
+    .pupil {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .welcome-text {
+        font-size: 18px;
+    }
+}
+
+/* Alternative themes */
+.loading-theme-blue .eye {
+    background: radial-gradient(ellipse at center, 
+        #0066ff 0%, 
+        #0044cc 30%, 
+        #003399 60%, 
+        #002266 100%);
+    box-shadow: 
+        0 0 20px rgba(0, 102, 255, 0.8),
+        0 0 40px rgba(0, 102, 255, 0.6),
+        0 0 60px rgba(0, 102, 255, 0.4);
+}
+
+.loading-theme-green .eye {
+    background: radial-gradient(ellipse at center, 
+        #00ff00 0%, 
+        #00cc00 30%, 
+        #009900 60%, 
+        #006600 100%);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.8),
+        0 0 40px rgba(0, 255, 0, 0.6),
+        0 0 60px rgba(0, 255, 0, 0.4);
+}
+
+.loading-theme-purple .eye {
+    background: radial-gradient(ellipse at center, 
+        #ff00ff 0%, 
+        #cc00cc 30%, 
+        #990099 60%, 
+        #660066 100%);
+    box-shadow: 
+        0 0 20px rgba(255, 0, 255, 0.8),
+        0 0 40px rgba(255, 0, 255, 0.6),
+        0 0 60px rgba(255, 0, 255, 0.4);
+}

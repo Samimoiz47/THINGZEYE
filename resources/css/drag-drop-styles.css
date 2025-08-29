@@ -1,0 +1,72 @@
+/* Drag and Drop Success Animation */
+.drop-success {
+  animation: dropSuccess 1s ease-in-out;
+}
+
+@keyframes dropSuccess {
+  0% {
+    box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-magenta);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--neon-cyan), 0 0 80px var(--neon-magenta);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-magenta);
+    transform: scale(1);
+  }
+}
+
+/* Styles for the drag and drop button */
+.drag-and-drop-area button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.drag-and-drop-area button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.6), 0 0 40px rgba(255, 140, 66, 0.4);
+}
+
+.drag-and-drop-area button:active {
+  transform: scale(0.98);
+}
+
+.drag-and-drop-area .hidden {
+  display: none;
+}
+
+/* Button positioning and styling */
+.drag-and-drop-area .relative.z-10 {
+  margin-top: 1.5rem;
+}
+
+/* Additional neon effects for the button */
+.drag-and-drop-area button.red-neon-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(15px) brightness(1.3);
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+  animation: buttonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes buttonGlow {
+  from {
+    opacity: 0.4;
+    filter: blur(10px) brightness(1.2);
+  }
+  to {
+    opacity: 0.8;
+    filter: blur(20px) brightness(1.5);
+  }
+}

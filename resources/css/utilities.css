@@ -1,0 +1,64 @@
+/* Utility classes for common UI patterns */
+.transition-colors {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.transition-all {
+    transition: all 0.2s ease;
+}
+
+/* Dark mode utilities */
+@media (prefers-color-scheme: dark) {
+    .system-dark {
+        background-color: oklch(0.145 0 0);
+        color: oklch(0.985 0 0);
+    }
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .mobile-hidden {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .desktop-hidden {
+        display: none;
+    }
+}
+
+/* Flexbox utilities */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Spacing utilities */
+.p-4 { padding: 1rem; }
+.m-4 { margin: 1rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.ml-4 { margin-left: 1rem; }
+.mr-4 { margin-right: 1rem; }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Border utilities */
+.border { border: 1px solid var(--border); }
+.rounded { border-radius: var(--radius); }

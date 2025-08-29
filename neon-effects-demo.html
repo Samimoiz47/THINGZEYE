@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINGZEYE - Advanced Neon Effects Demo</title>
+    <link rel="stylesheet" href="resources/css/neon-effects.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .theme-card {
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .theme-demo {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .effect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .effect-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .effect-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .effect-demo {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        /* Theme-specific backgrounds */
+        .cyan-theme { background: rgba(0, 255, 255, 0.1); }
+        .magenta-theme { background: rgba(255, 0, 255, 0.1); }
+        .purple-theme { background: rgba(139, 92, 246, 0.1); }
+        .green-theme { background: rgba(0, 255, 127, 0.1); }
+        .gold-theme { background: rgba(255, 215, 0, 0.1); }
+        .red-theme { background: rgba(255, 0, 0, 0.1); }
+
+        /* Interactive elements */
+        .interactive-demo {
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .responsive-test {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .responsive-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1rem;
+                margin: 2rem 0;
+            }
+            
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .effect-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom animations for demo */
+        @keyframes demoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .demo-pulse {
+            animation: demoPulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="section hyperreal-glass">
+            <h1 class="neon-title red-neon-title" data-text="THINGZEYE">THINGZEYE</h1>
+            <p class="neon-subheading cyan-neon-text">Advanced Neon Effects & Hyperrealistic Animations</p>
+        </header>
+
+        <!-- Multi-Color Neon Themes -->
+        <section class="section">
+            <h2 class="section-title">Multi-Color Neon Themes</h2>
+            
+            <div class="theme-grid">
+                <!-- Cyan Theme -->
+                <div class="theme-card cyan-theme cyan-neon-border">
+                    <h3 class="theme-title cyan-neon-text">Cyan Theme</h3>
+                    <div class="theme-demo cyan-neon-border">
+                        <p class="cyan-neon-text">Cyan Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .cyan-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: cyanTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Magenta Theme -->
+                <div class="theme-card magenta-theme magenta-neon-border">
+                    <h3 class="theme-title magenta-neon-text">Magenta Theme</h3>
+                    <div class="theme-demo magenta-neon-border">
+                        <p class="magenta-neon-text">Magenta Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .magenta-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: magentaTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Purple Theme -->
+                <div class="theme-card purple-theme purple-neon-border">
+                    <h3 class="theme-title purple-neon-text">Purple Theme</h3>
+                    <div class="theme-demo purple-neon-border">
+                        <p class="purple-neon-text">Purple Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .purple-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: purpleTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Green Theme -->
+                <div class="theme-card green-theme green-neon-border">
+                    <h3 class="theme-title green-neon-text">Green Theme</h3>
+                    <div class="theme-demo green-neon-border">
+                        <p class="green-neon-text">Green Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .green-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: greenTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Gold Theme -->
+                <div class="theme-card gold-theme gold-neon-border">
+                    <h3 class="theme-title gold-neon-text">Gold Theme</h3>
+                    <div class="theme-demo gold-neon-border">
+                        <p class="gold-neon-text">Gold Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .gold-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: goldTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Red Theme -->
+                <div class="theme-card red-theme red-neon-border">
+                    <h3 class="theme-title red-neon-text">Red Theme</h3>
+                    <div class="theme-demo red-neon-border">
+                        <p class="red-neon-text">Red Neon Effect</p>
+                    </div>
+                    <div class="code-snippet">
+                        .red-neon-text {<br>
+                        &nbsp;&nbsp;background: linear-gradient(...);<br>
+                        &nbsp;&nbsp;animation: redTextGlow 2s infinite;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hyperrealistic Effects -->
+        <section class="section">
+            <h2 class="section-title">Hyperrealistic Effects</h2>
+            
+            <div class="effect-grid">
+                <!-- 3D Depth Effect -->
+                <div class="effect-card hyperreal-depth">
+                    <h3 class="effect-title">3D Depth Lighting</h3>
+                    <div class="effect-demo hyperreal-glass">
+                        <p>Realistic 3D Depth</p>
+                    </div>
+                    <div class="code-snippet">
+                        .hyperreal-depth {<br>
+                        &nbsp;&nbsp;transform-style: preserve-3d;<br>
+                        &nbsp;&nbsp;perspective: 1200px;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Glassmorphism -->
+                <div class="effect-card hyperreal-glass neon-hover">
+                    <h3 class="effect-title">Advanced Glassmorphism</h3>
+                    <div class="effect-demo">
+                        <p>Glass with Refraction</p>
+                    </div>
+                    <div class="code-snippet">
+                        .hyperreal-glass {<br>
+                        &nbsp;&nbsp;backdrop-filter: blur(25px);<br>
+                        &nbsp;&nbsp;background: rgba(255,255,255,0.1);<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Neon Tube -->
+                <div class="effect-card neon-tube cyan-neon-text">
+                    <h3 class="effect-title">Neon Tube Effect</h3>
+                    <div class="effect-demo">
+                        <p>Realistic Tube Glow</p>
+                    </div>
+                    <div class="code-snippet">
+                        .neon-tube::before {<br>
+                        &nbsp;&nbsp;mask-composite: exclude;<br>
+                        &nbsp;&nbsp;filter: blur(8px);<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Holographic -->
+                <div class="effect-card holographic">
+                    <h3 class="effect-title">Holographic Effect</h3>
+                    <div class="effect-demo">
+                        <p>Holographic Shine</p>
+                    </div>
+                    <div class="code-snippet">
+                        .holographic::before {<br>
+                        &nbsp;&nbsp;animation: holographicShine 3s infinite;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- 3D Card Flip -->
+                <div class="effect-card card-3d-flip">
+                    <div class="front hyperreal-glass">
+                        <h3 class="effect-title">3D Card Flip</h3>
+                        <p>Front Side</p>
+                    </div>
+                    <div class="back hyperreal-glass">
+                        <h3 class="effect-title">Back Side</h3>
+                        <p>Flipped Content</p>
+                    </div>
+                    <div class="code-snippet">
+                        .card-3d-flip:hover {<br>
+                        &nbsp;&nbsp;transform: rotateY(180deg);<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Section -->
+        <section class="section">
+            <h2 class="section-title">Interactive Demos</h2>
+            
+            <div class="interactive-demo hyperreal-glass neon-hover">
+                <h3>Hover Me!</h3>
+                <p>Watch the 3D transformation and glow effects</p>
+            </div>
+
+            <div class="interactive-demo neon-tube magenta-neon-text demo-pulse">
+                <h3>Pulsing Neon Tube</h3>
+                <p>Realistic neon tube with pulse animation</p>
+            </div>
+
+            <div class="responsive-test">
+                <div class="responsive-item hyperreal-glass">Responsive Item 1</div>
+                <div class="responsive-item hyperreal-glass">Responsive Item 2</div>
+                <div class="responsive-item hyperreal-glass">Responsive Item 3</div>
+            </div>
+        </section>
+
+        <!-- Performance Features -->
+        <section class="section">
+            <h2 class="section-title">Performance Optimizations</h2>
+            
+            <div class="effect-grid">
+                <div class="effect-card">
+                    <h3 class="effect-title">Reduced Motion</h3>
+                    <p>Respects user preferences for reduced motion</p>
+                </div>
+                
+                <div class="effect-card">
+                    <h3 class="effect-title">Touch Optimization</h3>
+                    <p>Optimized for touch devices</p>
+                </div>
+                
+                <div class="effect-card">
+                    <h3 class="effect-title">High Contrast</h3>
+                    <p>Supports high contrast mode</p>
+                </div>
+                
+                <div class="effect-card">
+                    <h3 class="effect-title">Responsive Design</h3>
+                    <p>Adapts to all screen sizes</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple interaction for the demo
+        document.addEventListener('DOMContentLoaded', function() {
+            const interactiveElements = document.querySelectorAll('.interactive-demo, .effect-card');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', function() {
+                    this.classList.toggle('demo-pulse');
+                });
+            });
+
+            // Add some random particles for visual interest
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'advanced-particle';
+                particle.style.setProperty('--drift-x', Math.random() * 2 - 1);
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.color = [
+                    'var(--neon-cyan)',
+                    'var(--neon-magenta)',
+                    'var(--neon-purple)',
+                    'var(--neon-green)',
+                    'var(--neon-gold)',
+                    'var(--neon-red)'
+                ][Math.floor(Math.random() * 6)];
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 4000);
+            }
+
+            // Create initial particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createParticle, i * 200);
+            }
+
+            // Continuous particle creation
+            setInterval(createParticle, 300);
+        });
+    </script>
+</body>
+</html>

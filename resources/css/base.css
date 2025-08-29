@@ -1,0 +1,28 @@
+/* Base styles for HTML and body */
+html {
+    background-color: oklch(1 0 0);
+    transition: background-color 0.2s ease;
+}
+
+html.dark {
+    background-color: oklch(0.145 0 0);
+}
+
+body {
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Focus styles */
+*:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+}

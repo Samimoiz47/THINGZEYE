@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINGZEYE - Advanced Animation System Demo</title>
+    <link rel="stylesheet" href="resources/css/neon-effects.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .demo-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .animation-preview {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stagger-demo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stagger-item {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .scroll-demo {
+            height: 200vh;
+        }
+
+        .scroll-element {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .performance-section {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="neon-particles"></div>
+
+    <div class="container">
+        <header class="section text-center">
+            <h1 class="neon-title red-neon-title" data-text="THINGZEYE">THINGZEYE</h1>
+            <p class="neon-subheading">Advanced Animation System Demo</p>
+        </header>
+
+        <!-- Spring Animations Section -->
+        <section class="section scroll-fade-in">
+            <h2 class="neon-heading cyan-neon-text">Spring Animations</h2>
+            <div class="demo-grid">
+                <div class="demo-card" onclick="NeonAnimations.springBounce(this)">
+                    <div class="animation-preview spring-bounce" style="background: var(--neon-cyan);">
+                        ↻
+                    </div>
+                    <h3>Spring Bounce</h3>
+                    <p>Physics-based bounce animation with elastic easing</p>
+                </div>
+
+                <div class="demo-card" onclick="NeonAnimations.springWobble(this)">
+                    <div class="animation-preview spring-wobble" style="background: var(--neon-magenta);">
+                        ⚡
+                    </div>
+                    <h3>Spring Wobble</h3>
+                    <p>Wobbly spring effect with multiple oscillation points</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Staggered Animations Section -->
+        <section class="section scroll-slide-left">
+            <h2 class="neon-heading magenta-neon-text">Staggered Animations</h2>
+            <div class="stagger-container">
+                <div class="stagger-demo">
+                    <div class="stagger-item neon-border">Item 1</div>
+                    <div class="stagger-item neon-border">Item 2</div>
+                    <div class="stagger-item neon-border">Item 3</div>
+                    <div class="stagger-item neon-border">Item 4</div>
+                    <div class="stagger-item neon-border">Item 5</div>
+                    <div class="stagger-item neon-border">Item 6</div>
+                    <div class="stagger-item neon-border">Item 7</div>
+                    <div class="stagger-item neon-border">Item 8</div>
+                </div>
+            </div>
+            <div class="controls">
+                <button onclick="NeonAnimations.stagger(document.querySelector('.stagger-container'))">
+                    Trigger Stagger
+                </button>
+                <button onclick="document.querySelector('.stagger-container').classList.remove('animate')">
+                    Reset
+                </button>
+            </div>
+        </section>
+
+        <!-- Scroll Animations Section -->
+        <section class="section">
+            <h2 class="neon-heading purple-neon-text">Scroll-Triggered Animations</h2>
+            <div class="scroll-demo">
+                <div class="scroll-element scroll-fade-in">
+                    <h3>Fade In</h3>
+                    <p>This element fades in as you scroll down</p>
+                </div>
+                
+                <div class="scroll-element scroll-slide-left">
+                    <h3>Slide Left</h3>
+                    <p>This element slides in from the right</p>
+                </div>
+                
+                <div class="scroll-element scroll-slide-right">
+                    <h3>Slide Right</h3>
+                    <p>This element slides in from the left</p>
+                </div>
+                
+                <div class="scroll-element scroll-zoom-in">
+                    <h3>Zoom In</h3>
+                    <p>This element zooms in as it becomes visible</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Particle Effects Section -->
+        <section class="section scroll-fade-in">
+            <h2 class="neon-heading green-neon-text">Particle Effects</h2>
+            <div class="demo-grid">
+                <div class="demo-card" onclick="NeonAnimations.particles(event.clientX, event.clientY, '#00ffff', 10)">
+                    <div class="animation-preview" style="background: var(--neon-cyan);">
+                        ✨
+                    </div>
+                    <h3>Cyan Particles</h3>
+                    <p>Click to create cyan particle explosion</p>
+                </div>
+
+                <div class="demo-card" onclick="NeonAnimations.particles(event.clientX, event.clientY, '#ff00ff', 15)">
+                    <div class="animation-preview" style="background: var(--neon-magenta);">
+                        🌟
+                    </div>
+                    <h3>Magenta Particles</h3>
+                    <p>Click to create magenta particle explosion</p>
+                </div>
+
+                <div class="demo-card" onclick="NeonAnimations.particles(event.clientX, event.clientY, '#39ff14', 8)">
+                    <div class="animation-preview" style="background: var(--neon-laser-green);">
+                        💫
+                    </div>
+                    <h3>Green Particles</h3>
+                    <p>Click to create green particle explosion</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Elements Section -->
+        <section class="section scroll-slide-right">
+            <h2 class="neon-heading gold-neon-text">Interactive Elements</h2>
+            <div class="demo-grid">
+                <div class="demo-card draggable-item">
+                    <div class="animation-preview" style="background: var(--neon-gold);">
+                        🎮
+                    </div>
+                    <h3>Draggable Item</h3>
+                    <p>Try dragging this element around</p>
+                </div>
+
+                <div class="demo-card">
+                    <div class="animation-preview color-picker"></div>
+                    <h3>Color Picker</h3>
+                    <p>Interactive color selection</p>
+                </div>
+
+                <div class="demo-card">
+                    <div class="animation-preview">
+                        <input type="range" class="intensity-slider" min="0" max="100" value="50">
+                    </div>
+                    <h3>Intensity Slider</h3>
+                    <p>Adjust effect intensity</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Section -->
+        <section class="section scroll-zoom-in">
+            <h2 class="neon-heading silver-neon-text">Performance Monitoring</h2>
+            <p>The system automatically monitors FPS and adjusts effects based on performance.</p>
+            <div class="controls">
+                <button onclick="NeonAnimations.togglePerformanceMonitor(true)">
+                    Show Monitor
+                </button>
+                <button onclick="NeonAnimations.togglePerformanceMonitor(false)">
+                    Hide Monitor
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="resources/js/neon-animation-system.js"></script>
+    <script>
+        // Additional demo functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make draggable items actually draggable
+            const draggableItems = document.querySelectorAll('.draggable-item');
+            draggableItems.forEach(item => {
+                let isDragging = false;
+                let offset = [0, 0];
+
+                item.addEventListener('mousedown', function(e) {
+                    isDragging = true;
+                    offset = [
+                        item.offsetLeft - e.clientX,
+                        item.offsetTop - e.clientY
+                    ];
+                    item.classList.add('drag-over');
+                });
+
+                document.addEventListener('mousemove', function(e) {
+                    e.preventDefault();
+                    if (isDragging) {
+                        item.style.position = 'absolute';
+                        item.style.left = (e.clientX + offset[0]) + 'px';
+                        item.style.top = (e.clientY + offset[1]) + 'px';
+                    }
+                });
+
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                    item.classList.remove('drag-over');
+                });
+            });
+
+            // Color picker interaction
+            const colorPickers = document.querySelectorAll('.color-picker');
+            colorPickers.forEach(picker => {
+                picker.addEventListener('click', function() {
+                    const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    this.style.boxShadow = `0 0 20px ${randomColor}`;
+                    NeonAnimations.particles(
+                        this.getBoundingClientRect().left + this.offsetWidth / 2,
+                        this.getBoundingClientRect().top + this.offsetHeight / 2,
+                        randomColor,
+                        5
+                    );
+                });
+            });
+
+            // Auto-trigger stagger animation on page load
+            setTimeout(() => {
+                NeonAnimations.stagger(document.querySelector('.stagger-container'));
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
